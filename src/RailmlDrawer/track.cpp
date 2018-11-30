@@ -41,3 +41,8 @@ void Track::paint(QPainter &painter) const
     painter.drawLine(start.x(), start.y(), end.x(), end.y());
 
 }
+
+void Track::mousePressEvent(QMouseEvent *)
+{
+    emit shapeSelected();
+}

@@ -12,6 +12,7 @@ class SideTrack : public Shape
 public:
     SideTrack(QObject *parent = 0);
     void paint(QPainter &painter) const;
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // SIDINGTRACK_H

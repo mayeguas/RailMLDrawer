@@ -7,6 +7,7 @@
 namespace Ui {
 class MainWindow;
 }
+class QLabel;
 
 class MainWindow : public QMainWindow
 {
@@ -16,10 +17,16 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_actionDraw_triggered();
+
+    void on_actionSelect_triggered();
+
 private:
     Ui::MainWindow *ui;
 
-
+    QLabel *listLabel;
+    QLabel *selectedItem;
     RenderArea *qRenderArea;
 };
 

@@ -8,8 +8,14 @@ SideTrack::SideTrack(QObject *parent) : Shape(parent)
 }
 
 
-void SideTrack::paint(QPainter &painter) const
+void SideTrack::paint(QPainter &) const
 {
 
 
 }
+
+void SideTrack::mousePressEvent(QMouseEvent *)
+{
+    emit shapeSelected();
+}
+

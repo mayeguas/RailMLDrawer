@@ -9,13 +9,15 @@ class QMouseEvent;
 class QPainter;
 class QGraphicsScene;
 class Track;
+class QLabel;
+class QImage;
 
 
 class RenderArea : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RenderArea(QWidget *parent = nullptr);
+    explicit RenderArea(QLabel *, QLabel *, QWidget *parent = nullptr);
 
     QList<Shape*> shapeList;
     QList<Track*> trackList;
@@ -34,6 +36,12 @@ private:
     Shape *shape;
     bool endDraw;
 
+    QLabel *qListLabel;
+    QLabel *qSelectedItem;
+    QImage *qImage;
+
+public slots:
+    void shapeSelected();
 };
 
 #endif // RENDERAREA_H

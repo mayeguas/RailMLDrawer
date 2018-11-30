@@ -6,6 +6,8 @@
 #include <QLine>
 #include <QDebug>
 #include <QMessageBox>
+#include <QLabel>
+#include <QVBoxLayout>
 
 #include "track.h"
 #include "sidetrack.h"
@@ -16,18 +18,21 @@ bool pointInCircle(QPoint pointA, QPoint pointB)
     return ( (pow((pointA.x() - pointB.x()), 2) + pow((pointA.y() - pointB.y()), 2)) < pow(10, 2)) ? true : false;
 }
 
-RenderArea::RenderArea(QWidget *parent) : QWidget(parent), currentShapeCode(Shape::Track), shape(NULL), endDraw(false)
+RenderArea::RenderArea(QLabel *listLabel, QLabel *selectedItem, QWidget *parent) : QWidget(parent), currentShapeCode(Shape::Track), shape(NULL), endDraw(false)
 {
+    qListLabel = listLabel;
+    qSelectedItem = selectedItem;
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     endDraw = false;
+
+    connect(shape, SIGNAL(shapeSelected()), this, SLOT(shapeSelected()));
+
 }
 
 void RenderArea::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-
     painter.fillRect(this->rect(), Qt::white);
-
     foreach(Shape * shape, shapeList) {
         shape->paint(painter);
     }
@@ -49,8 +54,16 @@ void RenderArea::mousePressEvent(QMouseEvent *event)
         }
     }
 
+
+
+    if(shapeList.isEmpty()) shape->setId("net_0");
+    else shape->setId(QString("net_%1").arg(QString(shapeList.length())));
+
+    qListLabel->setText(qListLabel->text().append(shape->getId() + ", "));
+
     foreach(Shape *shape_, shapeList)
     {
+
         if(pointInCircle(shape_->getStart(), event->pos()))
         {
             shape->setStart(shape_->getStart());
@@ -122,3 +135,7 @@ void RenderArea::mouseReleaseEvent(QMouseEvent *)
     endDraw = true;
 }
 
+void RenderArea::shapeSelected()
+{
+    qSelectedItem->setText("Selected: " + shape->getId());
+}

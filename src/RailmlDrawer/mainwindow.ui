@@ -6,22 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>803</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="vLayout">
+      <item>
+       <widget class="QLabel" name="selectedElement">
+        <property name="text">
+         <string>Selected:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="elementList">
+        <property name="text">
+         <string>List:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>803</width>
      <height>21</height>
     </rect>
    </property>
@@ -33,8 +52,20 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionDraw"/>
+   <addaction name="actionSelect"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionDraw">
+   <property name="text">
+    <string>Draw</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="text">
+    <string>Select</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

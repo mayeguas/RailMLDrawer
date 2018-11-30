@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QPoint>
 #include <QString>
+
 class QPainter;
+class QMouseEvent;
 
 class Shape : public QObject
 {
@@ -29,6 +31,11 @@ public:
         end = e;
     }
 
+    void setId(QString id_)
+    {
+        id = id_;
+    }
+
     QPoint getStart()
     {
         return start;
@@ -39,11 +46,21 @@ public:
         return end;
     }
 
+    QString getId()
+    {
+        return id;
+    }
+
     void virtual paint(QPainter & painter) const = 0;
+    void virtual mousePressEvent(QMouseEvent *event) = 0;
 
 protected:
     QPoint start;
     QPoint end;
+    QString id;
+
+signals:
+    void shapeSelected();
 };
 
 #endif // SHAPE_H

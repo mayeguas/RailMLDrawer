@@ -7,9 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-    qRenderArea = new RenderArea(this);
-    setCentralWidget(qRenderArea);
+    listLabel = ui->elementList;
+    selectedItem = ui->selectedElement;
+    qRenderArea = new RenderArea(listLabel, selectedItem, this);
+    ui->verticalLayout->addWidget(qRenderArea);
 
 
 }
@@ -19,3 +20,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionDraw_triggered()
+{
+
+}
+
+void MainWindow::on_actionSelect_triggered()
+{
+
+}
